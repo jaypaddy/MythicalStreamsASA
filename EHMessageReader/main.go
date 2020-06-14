@@ -38,9 +38,11 @@ func Partition(conn string, partitionid string) {
 	fmt.Printf("INFO:I am listening to partition %s...\n", partitionid)
 }
 
+var entityPath string
+
 func main() {
-	connStr := os.Getenv("MSG_EVENTHUB")
-	entityPath := "pos"
+	connStr := os.Getenv("MSG_EVENTHUBNS")
+	entityPath = os.Getenv("MSG_EVENTHUB")
 	connStr = fmt.Sprintf("%s;EntityPath=%s", connStr, entityPath)
 
 	hub, err := eventhub.NewHubFromConnectionString(connStr)
@@ -80,7 +82,7 @@ func handler(c context.Context, event *eventhub.Event) error {
 	if member.City != "" {
 		keyStr := fmt.Sprintf("%s-%d", member.City, member.Counter)
 		enqTime := fmt.Sprintf("%s", event.SystemProperties.EnqueuedTime)
-		fmt.Printf("RVCD:%s\t%s\n", keyStr, enqTime)
+		fmt.Printf("%s:%s\t%s\n", entityPath, keyStr, enqTime)
 	}
 
 	return nil

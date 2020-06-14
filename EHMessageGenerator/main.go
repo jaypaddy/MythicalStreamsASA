@@ -54,8 +54,8 @@ func main() {
 func GenMember(city string) {
 	var member Member
 
-	connStr := os.Getenv("MSG_EVENTHUB")
-	entityPath := "pos"
+	connStr := os.Getenv("MSG_EVENTHUBNS")
+	entityPath := os.Getenv("MSG_EVENTHUB")
 	connStr = fmt.Sprintf("%s;EntityPath=%s", connStr, entityPath)
 	hub, err := eventhub.NewHubFromConnectionString(connStr)
 	if err != nil {
@@ -104,7 +104,8 @@ func GenMember(city string) {
 		rand.Seed(time.Now().UnixNano())
 		//k := rand.Intn(10)
 		k := 2 //Second Wait between Member Generation
-		dispInfo := fmt.Sprintf("%s-%d-%s", city, member.Counter, start)
+
+		dispInfo := fmt.Sprintf("%s-%d-%v", city, member.Counter, start.UTC())
 		//fmt.Printf("%s\t%s\tElapsed Time:%v\tNext Member in:%d seconds\n", dispInfo, printStr, elapsed, k)
 
 		fmt.Printf("SENT:%s\n", dispInfo)
