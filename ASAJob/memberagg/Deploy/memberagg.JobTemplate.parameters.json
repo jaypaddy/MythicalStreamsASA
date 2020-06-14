@@ -1,0 +1,90 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ASAApiVersion": {
+            "value": "2017-04-01-preview"
+        },
+        "StreamAnalyticsJobName": {
+            "value": "memberagg"
+        },
+        "Location": {
+            "value": "Central US"
+        },
+        "OutputStartMode": {
+            "value": "JobStartTime"
+        },
+        "OutputStartTime": {
+            "value": "2019-01-01T00:00:00Z"
+        },
+        "DataLocale": {
+            "value": "en-US"
+        },
+        "OutputErrorPolicy": {
+            "value": "Stop"
+        },
+        "EventsLateArrivalMaxDelayInSeconds": {
+            "value": 5
+        },
+        "EventsOutOfOrderMaxDelayInSeconds": {
+            "value": 0
+        },
+        "EventsOutOfOrderPolicy": {
+            "value": "Adjust"
+        },
+        "StreamingUnits": {
+            "value": 1
+        },
+        "CompatibilityLevel": {
+            "value": "1.2"
+        },
+        "Input_newmembers_partitionKey": {
+            "value": "City"
+        },
+        "Input_newmembers_serviceBusNamespace": {
+            "value": "orioneh"
+        },
+        "Input_newmembers_eventHubName": {
+            "value": "newmembers"
+        },
+        "Input_newmembers_consumerGroupName": {
+            "value": "memberagg_newmembers_consumer_group"
+        },
+        "Input_newmembers_sharedAccessPolicyName": {
+            "value": "memberagg_newmembers_policy"
+        },
+        "Input_newmembers_sharedAccessPolicyKey": {
+            "value": null
+        },
+        "Output_newmembersaggmetrics_serviceBusNamespace": {
+            "value": "mythicalshield"
+        },
+        "Output_newmembersaggmetrics_eventHubName": {
+            "value": "allmsgs"
+        },
+        "Output_newmembersaggmetrics_partitionKey": {
+            "value": "DISCRIMINATOR1"
+        },
+        "Output_newmembersaggmetrics_sharedAccessPolicyName": {
+            "value": "memberagg_newmembersaggmetrics_policy"
+        },
+        "Output_newmembersaggmetrics_sharedAccessPolicyKey": {
+            "value": null
+        },
+        "Output_newmembersagg_serviceBusNamespace": {
+            "value": "orioneh"
+        },
+        "Output_newmembersagg_eventHubName": {
+            "value": "newmembersagg"
+        },
+        "Output_newmembersagg_partitionKey": {
+            "value": "City"
+        },
+        "Output_newmembersagg_sharedAccessPolicyName": {
+            "value": "newmembers"
+        },
+        "Output_newmembersagg_sharedAccessPolicyKey": {
+            "value": null
+        }
+    }
+}

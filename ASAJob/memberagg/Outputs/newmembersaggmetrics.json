@@ -1,0 +1,20 @@
+{
+    "Name": "newmembersaggmetrics",
+    "DataSourceType": "Event Hub",
+    "EventHubProperties": {
+        "ServiceBusNamespace": "mythicalshield",
+        "SharedAccessPolicyName": "memberagg_newmembersaggmetrics_policy",
+        "EventHubName": "allmsgs",
+        "PartitionKey": "DISCRIMINATOR1",
+        "PropertyColumns": [],
+        "SharedAccessPolicyKey": null
+    },
+    "DataSourceCredentialDomain": "be8c6119-5f79-4223-948c-23a575ed7b0b.StreamAnalystics",
+    "Serialization": {
+        "Type": "Json",
+        "Encoding": "UTF8",
+        "Format": "LineSeparated",
+        "FieldDelimiter": null
+    },
+    "ScriptType": "Output"
+}

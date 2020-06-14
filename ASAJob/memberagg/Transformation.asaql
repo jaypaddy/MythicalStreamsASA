@@ -1,0 +1,30 @@
+WITH   
+STEP1 AS  
+(  
+  SELECT    Count(*) as membercount, 
+            Id,
+            Counter,
+            DtTm,
+            HHmm,
+            Status,
+            City,
+            EventEnqueuedUtcTime
+  FROM newmembers TIMESTAMP BY EventEnqueuedUtcTime 
+  PARTITION BY City  
+  GROUP BY  City,
+            Id,
+            Counter,
+            DtTm,
+            HHmm,
+            Status,
+            City,
+            EventEnqueuedUtcTime,
+            TumblingWindow(Duration(second, 6), Offset(millisecond, -1))
+)  
+
+
+SELECT    *
+INTO newmembersagg 
+FROM STEP1 
+
+/*INTO azfunc FROM STEP1*/

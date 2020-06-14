@@ -35,7 +35,7 @@ func Partition(conn string, partitionid string) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Printf("INFO:I am listening to partition %s...\n", partitionid)
+	fmt.Printf("INFO:I am listening to partition %s:%s...\n", entityPath, partitionid)
 }
 
 var entityPath string

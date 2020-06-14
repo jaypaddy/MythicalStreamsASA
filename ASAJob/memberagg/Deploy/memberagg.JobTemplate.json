@@ -1,0 +1,256 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ASAApiVersion": {
+            "type": "string"
+        },
+        "StreamAnalyticsJobName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 63,
+            "metadata": {
+                "description": "Stream Analytics Job Name, can contain alphanumeric characters and hypen and must be 3-63 characters long"
+            }
+        },
+        "Location": {
+            "type": "string"
+        },
+        "OutputStartMode": {
+            "type": "string",
+            "allowedValues": [
+                "JobStartTime",
+                "CustomTime",
+                "LastOutputEventTime"
+            ]
+        },
+        "OutputStartTime": {
+            "type": "string"
+        },
+        "DataLocale": {
+            "type": "string"
+        },
+        "OutputErrorPolicy": {
+            "type": "string",
+            "allowedValues": [
+                "Drop",
+                "Stop"
+            ]
+        },
+        "EventsLateArrivalMaxDelayInSeconds": {
+            "type": "int"
+        },
+        "EventsOutOfOrderMaxDelayInSeconds": {
+            "type": "int"
+        },
+        "EventsOutOfOrderPolicy": {
+            "type": "string",
+            "allowedValues": [
+                "Adjust",
+                "Drop"
+            ]
+        },
+        "StreamingUnits": {
+            "type": "int",
+            "minValue": 1,
+            "maxValue": 192,
+            "metadata": {
+                "description": "Number of Streaming Units"
+            },
+            "allowedValues": [
+                1,
+                3,
+                6,
+                12,
+                18,
+                24,
+                30,
+                36,
+                42,
+                48,
+                54,
+                60,
+                66,
+                72,
+                78,
+                84,
+                90,
+                96,
+                102,
+                108,
+                114,
+                120,
+                126,
+                132,
+                138,
+                144,
+                150,
+                156,
+                162,
+                168,
+                174,
+                180,
+                186,
+                192
+            ]
+        },
+        "CompatibilityLevel": {
+            "type": "string",
+            "allowedValues": [
+                "1.0",
+                "1.1",
+                "1.2"
+            ]
+        },
+        "Input_newmembers_partitionKey": {
+            "type": "string"
+        },
+        "Input_newmembers_serviceBusNamespace": {
+            "type": "string"
+        },
+        "Input_newmembers_eventHubName": {
+            "type": "string"
+        },
+        "Input_newmembers_consumerGroupName": {
+            "type": "string"
+        },
+        "Input_newmembers_sharedAccessPolicyName": {
+            "type": "string"
+        },
+        "Input_newmembers_sharedAccessPolicyKey": {
+            "type": "string"
+        },
+        "Output_newmembersaggmetrics_serviceBusNamespace": {
+            "type": "string"
+        },
+        "Output_newmembersaggmetrics_eventHubName": {
+            "type": "string"
+        },
+        "Output_newmembersaggmetrics_partitionKey": {
+            "type": "string"
+        },
+        "Output_newmembersaggmetrics_sharedAccessPolicyName": {
+            "type": "string"
+        },
+        "Output_newmembersaggmetrics_sharedAccessPolicyKey": {
+            "type": "string"
+        },
+        "Output_newmembersagg_serviceBusNamespace": {
+            "type": "string"
+        },
+        "Output_newmembersagg_eventHubName": {
+            "type": "string"
+        },
+        "Output_newmembersagg_partitionKey": {
+            "type": "string"
+        },
+        "Output_newmembersagg_sharedAccessPolicyName": {
+            "type": "string"
+        },
+        "Output_newmembersagg_sharedAccessPolicyKey": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.StreamAnalytics/StreamingJobs",
+            "apiVersion": "[parameters('ASAApiVersion')]",
+            "name": "[parameters('StreamAnalyticsJobName')]",
+            "location": "[parameters('Location')]",
+            "properties": {
+                "outputStartMode": "[parameters('OutputStartMode')]",
+                "outputStartTime": "[if(equals(parameters('OutputStartMode'),'CustomTime'), parameters('OutputStartTime'), json('null'))]",
+                "sku": {
+                    "name": "standard"
+                },
+                "eventsOutOfOrderPolicy": "[parameters('EventsOutOfOrderPolicy')]",
+                "outputErrorPolicy": "[parameters('OutputErrorPolicy')]",
+                "eventsOutOfOrderMaxDelayInSeconds": "[parameters('EventsOutOfOrderMaxDelayInSeconds')]",
+                "eventsLateArrivalMaxDelayInSeconds": "[parameters('EventsLateArrivalMaxDelayInSeconds')]",
+                "dataLocale": "[parameters('DataLocale')]",
+                "compatibilityLevel": "[parameters('CompatibilityLevel')]",
+                "transformation": {
+                    "name": "Transformation",
+                    "properties": {
+                        "streamingUnits": "[parameters('StreamingUnits')]",
+                        "query": "WITH   \r\nSTEP1 AS  \r\n(  \r\n  SELECT    Count(*) as membercount, \r\n            Id,\r\n            Counter,\r\n            DtTm,\r\n            HHmm,\r\n            Status,\r\n            City,\r\n            EventEnqueuedUtcTime\r\n  FROM newmembers TIMESTAMP BY EventEnqueuedUtcTime \r\n  PARTITION BY City  \r\n  GROUP BY  City,\r\n            Id,\r\n            Counter,\r\n            DtTm,\r\n            HHmm,\r\n            Status,\r\n            City,\r\n            EventEnqueuedUtcTime,\r\n            TumblingWindow(Duration(second, 6), Offset(millisecond, -1))\r\n)  \r\n\r\n\r\nSELECT    *\r\nINTO newmembersagg \r\nFROM STEP1 \r\n\r\n/*INTO azfunc FROM STEP1*/"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "newmembers",
+                        "properties": {
+                            "type": "Stream",
+                            "datasource": {
+                                "type": "Microsoft.ServiceBus/EventHub",
+                                "properties": {
+                                    "serviceBusNamespace": "[parameters('Input_newmembers_serviceBusNamespace')]",
+                                    "eventHubName": "[parameters('Input_newmembers_eventHubName')]",
+                                    "consumerGroupName": "[parameters('Input_newmembers_consumerGroupName')]",
+                                    "sharedAccessPolicyName": "[parameters('Input_newmembers_sharedAccessPolicyName')]",
+                                    "sharedAccessPolicyKey": "[parameters('Input_newmembers_sharedAccessPolicyKey')]"
+                                }
+                            },
+                            "compression": {
+                                "type": "None"
+                            },
+                            "partitionKey": "[parameters('Input_newmembers_partitionKey')]",
+                            "serialization": {
+                                "type": "Json",
+                                "properties": {
+                                    "encoding": "UTF8"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "newmembersaggmetrics",
+                        "properties": {
+                            "serialization": {
+                                "type": "Json",
+                                "properties": {
+                                    "encoding": "UTF8",
+                                    "format": "LineSeparated"
+                                }
+                            },
+                            "datasource": {
+                                "type": "Microsoft.ServiceBus/EventHub",
+                                "properties": {
+                                    "serviceBusNamespace": "[parameters('Output_newmembersaggmetrics_serviceBusNamespace')]",
+                                    "eventHubName": "[parameters('Output_newmembersaggmetrics_eventHubName')]",
+                                    "partitionKey": "[parameters('Output_newmembersaggmetrics_partitionKey')]",
+                                    "sharedAccessPolicyName": "[parameters('Output_newmembersaggmetrics_sharedAccessPolicyName')]",
+                                    "sharedAccessPolicyKey": "[parameters('Output_newmembersaggmetrics_sharedAccessPolicyKey')]"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "newmembersagg",
+                        "properties": {
+                            "serialization": {
+                                "type": "Json",
+                                "properties": {
+                                    "encoding": "UTF8",
+                                    "format": "LineSeparated"
+                                }
+                            },
+                            "datasource": {
+                                "type": "Microsoft.ServiceBus/EventHub",
+                                "properties": {
+                                    "serviceBusNamespace": "[parameters('Output_newmembersagg_serviceBusNamespace')]",
+                                    "eventHubName": "[parameters('Output_newmembersagg_eventHubName')]",
+                                    "partitionKey": "[parameters('Output_newmembersagg_partitionKey')]",
+                                    "sharedAccessPolicyName": "[parameters('Output_newmembersagg_sharedAccessPolicyName')]",
+                                    "sharedAccessPolicyKey": "[parameters('Output_newmembersagg_sharedAccessPolicyKey')]"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

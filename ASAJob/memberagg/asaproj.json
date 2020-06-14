@@ -1,0 +1,22 @@
+{
+    "name": "memberagg",
+    "startFile": "Transformation.asaql",
+    "configurations": [
+        {
+            "filePath": "JobConfig.json",
+            "subType": "JobConfig"
+        },
+        {
+            "filePath": "Outputs/newmembersagg.json",
+            "subType": "Output"
+        },
+        {
+            "filePath": "Inputs/newmembers.json",
+            "subType": "Input"
+        },
+        {
+            "filePath": "Outputs/newmembersaggmetrics.json",
+            "subType": "Output"
+        }
+    ]
+}
