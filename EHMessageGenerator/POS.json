@@ -1,0 +1,130 @@
+{
+    "NAXMLPOSJournal": {
+      "JournalReport": {
+        "JournalHeader": {
+          "ReportSequenceNumber": "NaN",
+          "EndTime": "",
+          "PrimaryReportPeriod": {
+            "interval": "SHIFT",
+            "content": 1
+          },
+          "BeginTime": "03:10:37",
+          "SecondaryReportPeriod": "NaN",
+          "EndDate": "",
+          "BeginDate": "2020-03-20"
+        },
+        "SaleEvent": {
+          "TillID": 1,
+          "RegisterID": 101,
+          "OfflineFlag": {
+            "value": "no"
+          },
+          "EventStartTime": "<EVENTSTARTTIME>",
+          "BusinessDate": "<BUSINESSDATE>",
+          "ReceiptTime": "<RECEIPTTIME>",
+          "CashierID": 60,
+          "SuspendFlag": {
+            "value": "no"
+          },
+          "TransactionID": "<TRANSACTIONID>",
+          "EventEndTime": "<EVENTENDTIME>",
+          "TransactionDetailGroup": {
+            "TransactionLine": [
+              {
+                "ItemLine": {
+                  "ActualSalesPrice": ".99",
+                  "MerchandiseCode": 109,
+                  "ItemCode": {
+                    "POSCode": "00025900227265",
+                    "POSCodeFormat": {
+                      "format": "gtin"
+                    },
+                    "POSCodeModifier": "000"
+                  },
+                  "Description": "SWISHER SWT SWT CIGO $.9",
+                  "ItemTax": {
+                    "TaxLevelID": 1
+                  },
+                  "EntryMethod": {
+                    "method": "scan"
+                  },
+                  "SellingUnits": {
+                    "uom": "each",
+                    "content": 1
+                  },
+                  "SalesQuantity": 2,
+                  "SalesRestriction": {
+                    "MinimumCustomerAge": 21
+                  },
+                  "RegularSellPrice": ".99",
+                  "SalesAmount": 1.98
+                },
+                "status": "normal"
+              },
+              {
+                "status": "normal",
+                "TransactionTax": {
+                  "TaxLevelID": 1,
+                  "TaxableSalesAmount": 1.98,
+                  "TaxCollectedAmount": ".16"
+                }
+              },
+              {
+                "TenderInfo": {
+                  "ChangeFlag": {
+                    "value": "no"
+                  },
+                  "TenderAmount": 10,
+                  "Tender": {
+                    "TenderCode": "generic",
+                    "TenderSubCode": "generic"
+                  }
+                },
+                "status": "normal"
+              },
+              {
+                "TenderInfo": {
+                  "ChangeFlag": {
+                    "value": "yes"
+                  },
+                  "TenderAmount": -7.86,
+                  "Tender": {
+                    "TenderCode": "generic",
+                    "TenderSubCode": "generic"
+                  }
+                },
+                "status": "normal"
+              }
+            ]
+          },
+          "EventEndDate": "2020-03-20",
+          "OutsideSalesFlag": {
+            "value": "no"
+          },
+          "EventStartDate": "2020-03-20",
+          "ReceiptDate": "2020-03-20",
+          "TransactionSummary": {
+            "TransactionTotalGrandAmount": {
+              "content": 2.14,
+              "direction": "Collected"
+            },
+            "TransactionTotalGrossAmount": 1.98,
+            "TransactionTotalTaxNetAmount": ".16",
+            "TransactionTotalNetAmount": 2.14,
+            "TransactionTotalTaxSalesAmount": ".16"
+          },
+          "EventSequenceID": 1360,
+          "TrainingModeFlag": {
+            "value": "no"
+          }
+        }
+      },
+      "TransmissionHeader": {
+        "StoreLocationID": "<STORELOCATIONID>",
+        "VendorName": "VeriFone",
+        "VendorModelVersion": "Commander Site Controller"
+      },
+      "version": 3.4
+    },
+    "PricingUID": "1011715.Current.20200320.5214"
+  }
