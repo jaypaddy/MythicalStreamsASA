@@ -80,9 +80,8 @@ func handler(c context.Context, event *eventhub.Event) error {
 	var member Member
 	json.Unmarshal(event.Data, &member)
 	if member.City != "" {
-		keyStr := fmt.Sprintf("%s-%d", member.City, member.Counter)
-		enqTime := fmt.Sprintf("%s", event.SystemProperties.EnqueuedTime)
-		fmt.Printf("%s:%s\t%s\n", entityPath, keyStr, enqTime)
+		keyStr := fmt.Sprintf("%s-%d %s", member.City, member.Counter, member.DtTm)
+		fmt.Printf("%s:%s\n", entityPath, keyStr)
 	}
 
 	return nil

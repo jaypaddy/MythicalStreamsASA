@@ -36,9 +36,7 @@ var (
 
 func main() {
 
-	mu.Lock()
-	memberCount = 616657
-	mu.Unlock()
+	memberCount = 617657
 	for _, cityCODE := range citycode {
 		go GenMember(cityCODE)
 	}
@@ -79,16 +77,17 @@ func GenMember(city string) {
 		if err != nil {
 			log.Fatal(err)
 		}
-		member.DtTm = time.Now().String()
+
 		member.ID = uuid.String()
 		member.Status = "New"
 		member.City = city
+		member.DtTm = time.Now().String()
 
 		bytesRepresentation, _ = json.Marshal(member)
 		event := eventhub.NewEvent(bytesRepresentation)
 		event.PartitionKey = &member.City
 
-		start := time.Now()
+		//start := time.Now()
 		err = hub.Send(ctx, event)
 		if err != nil {
 			fmt.Println(err)
@@ -105,7 +104,7 @@ func GenMember(city string) {
 		//k := rand.Intn(10)
 		k := 2 //Second Wait between Member Generation
 
-		dispInfo := fmt.Sprintf("%s-%d-%v", city, member.Counter, start.UTC())
+		dispInfo := fmt.Sprintf("%s-%d-%v", city, member.Counter, member.DtTm)
 		//fmt.Printf("%s\t%s\tElapsed Time:%v\tNext Member in:%d seconds\n", dispInfo, printStr, elapsed, k)
 
 		fmt.Printf("SENT:%s\n", dispInfo)

@@ -1,0 +1,9 @@
+{
+    "azureFunctions.deploySubpath": "EHMessageTrigger/target/azure-functions/EHMessageTrigger-1592217363232",
+    "azureFunctions.scmDoBuildDuringDeployment": true,
+    "azureFunctions.pythonVenv": ".venv",
+    "azureFunctions.projectLanguage": "Java",
+    "azureFunctions.projectRuntime": "~3",
+    "azureFunctions.preDeployTask": "package",
+    "azureFunctions.templateFilter": "All"
+}
