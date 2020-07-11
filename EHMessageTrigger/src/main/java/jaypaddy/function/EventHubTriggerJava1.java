@@ -24,5 +24,6 @@ public class EventHubTriggerJava1 {
         final ExecutionContext context
     ) {
         context.getLogger().info(message.toString());
+        ETL
         toEH.setValue(message);    }
 }

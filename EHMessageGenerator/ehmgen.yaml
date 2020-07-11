@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: goehmgen
+spec:
+  parallelism: 5
+  template:
+    spec:
+      containers:
+      - name: goehmgen
+        image: paddycontainers.azurecr.io/goehmgen:v2
+        env:
+          - name: MSG_EVENTHUBNS
+            value: "Endpoint=sb://mythical800gb.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=IUWcOL2zUNdy7pZb7K2jSU1R9aiGjzZTKUdI9OccJyo="
+          - name: MSG_EVENTHUB
+            value: "newmembers"
+      restartPolicy: Never
+  backoffLimit: 4
+

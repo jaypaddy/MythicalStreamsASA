@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"math/rand"
 	"os"
 	"os/signal"
+	"strings"
 	"sync"
 	"time"
 
@@ -23,9 +23,10 @@ type Member struct {
 	HHmm    string `json:"hhmm,imitempty"`
 	Status  string `json:"status,omitempty"`
 	City    string `json:"city,omitempty"`
+	Stuff   string `json:"stuff,omitempty"`
 }
 
-var citycode = []string{"DFW", "ORD", "MIA", "LAX", "PHI", "AUS", "SFO", "DBX", "MAA", "KOC", "LHR", "XYZ"}
+var citycode = []string{"DFW", "ORD", "MIA", "LAX", "PHI", "AUS", "SFO", "DBX", "MAA", "KOC", "LHR", "MAA", "BLR", "PAR", "LHR", "XYZ"}
 
 //https://notes.shichao.io/gopl/ch9/
 
@@ -82,32 +83,33 @@ func GenMember(city string) {
 		member.Status = "New"
 		member.City = city
 		member.DtTm = time.Now().String()
+		member.Stuff = strings.Repeat("AmericanAirlines", 65000)
 
 		bytesRepresentation, _ = json.Marshal(member)
 		event := eventhub.NewEvent(bytesRepresentation)
 		event.PartitionKey = &member.City
 
-		//start := time.Now()
+		start := time.Now()
 		err = hub.Send(ctx, event)
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
-		/*t := time.Now()
+		t := time.Now()
 		elapsed := t.Sub(start)
 		if err != nil {
 			fmt.Println(err)
 			return
-		}*/
+		}
 
-		rand.Seed(time.Now().UnixNano())
+		//rand.Seed(time.Now().UnixNano())
 		//k := rand.Intn(10)
-		k := 2 //Second Wait between Member Generation
+		//k := 1 //Second Wait between Member Generation
 
-		dispInfo := fmt.Sprintf("%s-%d-%v", city, member.Counter, member.DtTm)
+		dispInfo := fmt.Sprintf("City:(%s)-MemberId:(%d)-MsgLength:(%d)KB-%v", city, member.Counter, len(bytesRepresentation)/1024, elapsed)
 		//fmt.Printf("%s\t%s\tElapsed Time:%v\tNext Member in:%d seconds\n", dispInfo, printStr, elapsed, k)
 
 		fmt.Printf("SENT:%s\n", dispInfo)
-		time.Sleep(time.Duration(k) * time.Second)
+		//time.Sleep(time.Duration(k) * time.Second)
 	}
 }
