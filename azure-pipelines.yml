@@ -57,20 +57,12 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: 
 
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'JAPADMAN Lab(881ac365-d417-4791-b2a9-48789acbb88d)'
     scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az group create --name $resourceGroupName --location $location'
-
-
-
-
-
-
-
+    scriptLocation: 'scriptPath'
+    scriptPath: '/azure.infra.sh'
 
 # ...
 # Release Azure Function
