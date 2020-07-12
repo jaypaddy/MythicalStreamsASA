@@ -15,7 +15,9 @@ trigger:
 # Set variables 
 variables:
   resourceGroupName: Mythical-EH-ASA-EH-AF_RG
-  location: 'East US'
+  location: 'EastUS'
+  ehNamespace:"mythicalairlineshub"
+
 
 
 pool:
@@ -45,6 +47,19 @@ steps:
 # Event Hub
 # Azure resource group deployment
 # Deploy an Azure Resource Manager (ARM) template to a resource group and manage virtual machines
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'JAPADMAN Lab(881ac365-d417-4791-b2a9-48789acbb88d)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      rgExists=$(az group show --name $resourceGroupName)
+      if [ -z "$rgExists" ]
+      then
+        echo "creating resourcegroup $(RESOURCE_GROUP_NAME)"
+        az group create --name $resourceGroupName --location $location
+      fi
+      #Create Event Hub
 
 
 - task: AzureCLI@2
