@@ -14,9 +14,12 @@ trigger:
 
 # Set variables 
 variables:
-  resourceGroupName: Mythical-EH-ASA-EH-AF_RG
+  resourceGroupName: 'Mythical-EH-ASA-EH-AF_RG'
   location: 'EastUS'
-  ehNamespace:"mythicalairlineshub"
+  ehNamespace: 'mythicalairlineshub'
+  ingestionEventhub: 'members'
+  egressEventhub: 'membersagg'
+  partitionCount: 12
 
 
 
@@ -52,14 +55,7 @@ steps:
     azureSubscription: 'JAPADMAN Lab(881ac365-d417-4791-b2a9-48789acbb88d)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: |
-      rgExists=$(az group show --name $resourceGroupName)
-      if [ -z "$rgExists" ]
-      then
-        echo "creating resourcegroup $(RESOURCE_GROUP_NAME)"
-        az group create --name $resourceGroupName --location $location
-      fi
-      #Create Event Hub
+    inlineScript: 
 
 
 - task: AzureCLI@2
