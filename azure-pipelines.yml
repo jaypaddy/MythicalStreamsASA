@@ -12,11 +12,18 @@ trigger:
     - master/EHMessageGenerator
     - master/EHMessageReader
 
+# Set variables 
+variables:
+  resourceGroupName: Mythical-EH-ASA-EH-AF_RG
+  location: 'East US'
+
+
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
 
+# Build Java Function EHMessageTrigger
 - task: Maven@3
   inputs:
     mavenPomFile: 'EHMessageTrigger/pom.xml'
@@ -31,6 +38,29 @@ steps:
     sonarQubeRunAnalysis: true
     sqMavenPluginVersionChoice: 'latest'
 
+
+# Establish Azure Resources
+# Resource Group
+# Function App
+# Event Hub
+# Azure resource group deployment
+# Deploy an Azure Resource Manager (ARM) template to a resource group and manage virtual machines
+
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'JAPADMAN Lab(881ac365-d417-4791-b2a9-48789acbb88d)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az group create --name $resourceGroupName --location $location'
+
+
+
+
+
+
+
+
 # ...
 # Release Azure Function
 - task: CopyFiles@2
@@ -39,6 +69,7 @@ steps:
     SourceFolder: $(system.defaultworkingdirectory)/EHMessageTrigger/target/azure-functions/
     Contents: '**'
     TargetFolder: $(build.artifactstagingdirectory)   
+
 
 - task: PublishBuildArtifacts@1
   displayName: Publish Artifact
