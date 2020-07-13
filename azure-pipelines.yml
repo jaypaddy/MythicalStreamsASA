@@ -17,11 +17,12 @@ variables:
   resourceGroupName: 'Mythical-EH-ASA-EH-AF_RG'
   location: 'EastUS'
   ehNamespace: 'mythicalairlineshub'
-  ingestionEventhub: 'members'
-  egressEventhub: 'membersagg'
+  ingestionEventhub: 'newmembers'
+  egressEventhub: 'newmembersagg'
+  egressEHConsumerGroup: 'functrigger'
   partitionCount: 12
-
-
+  functionApp: 'newmembersfuncapp'
+  funcstore: 'newmembersfuncappstore'
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -50,13 +51,6 @@ steps:
 # Event Hub
 # Azure resource group deployment
 # Deploy an Azure Resource Manager (ARM) template to a resource group and manage virtual machines
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'JAPADMAN Lab(881ac365-d417-4791-b2a9-48789acbb88d)'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'JAPADMAN Lab(881ac365-d417-4791-b2a9-48789acbb88d)'
