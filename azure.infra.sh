@@ -73,8 +73,6 @@ then
                 --runtime java  \
                 --storage-account $funcstore   \
     
-else
-    # check if the Event Hubs exist in the Namespace
 fi
 
 
