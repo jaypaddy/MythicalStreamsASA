@@ -56,7 +56,7 @@ steps:
     azureSubscription: 'JAPADMAN Lab(881ac365-d417-4791-b2a9-48789acbb88d)'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
-    scriptPath: '/azure.infra.sh'
+    scriptPath: $(system.defaultworkingdirectory)/azure.infra.sh
 
 # ...
 # Release Azure Function
