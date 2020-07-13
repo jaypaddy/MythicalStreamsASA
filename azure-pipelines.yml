@@ -22,9 +22,9 @@ variables:
   egressEventhub: 'newmembersagg'
   egressEHConsumerGroup: 'functrigger'
   partitionCount: 12
-  functionApp: 'funcapp'
-  funcstore: 'funcappstore'
-  funcappinsights: 'funcappappinsights'
+  functionApp: 'mythehasaehfuncapp'
+  funcstore: 'mythehasaehfuncstore'
+  funcappinsights: 'mythehasaehfuncappins'
 
 pool:
   vmImage: 'ubuntu-latest'
