@@ -119,4 +119,4 @@ steps:
     azureSubscription: 'JAPADMAN Lab(881ac365-d417-4791-b2a9-48789acbb88d)'
     appType: 'functionAppLinux'
     appName: '$(functionApp)'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '$(build.artifactstagingdirectory)/**/*.zip'
