@@ -5,6 +5,7 @@ then
     az group create --name $resourceGroupName --location $location
 fi
 
+echo "checking eventhub $ehNamespace"
 ehExists=$(az eventhubs eventhub show \
     --resource-group $resourceGroupName \
     --namespace-name $ehNamespace)
@@ -12,6 +13,7 @@ ehExists=$(az eventhubs eventhub show \
 #EH Namespace and Event Hubs
 if [ -z "$ehExists" ]
 then  
+    echo "creating eventhub $ehNamespace"
     #Create Event Hub Namespace
     az eventhubs namespace create \
                 --name $ehNamespace \
@@ -19,6 +21,7 @@ then
                 -l $location
     #Create Event Hub
     # Create ingress event hub. Specify a name for the event hub. 
+    echo "creating eventhub $ehNamespace - $ingestionEventhub"
     az eventhubs eventhub create \
                 --name $ingestionEventhub \
                 --resource-group $resourceGroupName \
@@ -26,6 +29,7 @@ then
                 --partition-count $partitionCount
 
     # Create egress event hub
+    echo "creating eventhub $ehNamespace - $egressEventhub"
     az eventhubs eventhub create \
                 --name $egressEventhub) \
                 --resource-group $resourceGroupName \
@@ -33,6 +37,7 @@ then
                 --partition-count $partitionCount
     
     # Create a consumer group for function trigger
+    echo "creating consumergroup - egressEHConsumerGroup"
     az eventhubs eventhub consumer-group create \
                 --resource-group $resourceGroupName \
                 --namespace-name $ehNamespace \ 
@@ -40,6 +45,7 @@ then
                 --name egressEHConsumerGroup
 
     #get the SAS and load it for functions
+    echo "creating authorization rule - $ehNamespace"
     authorizationRuleName = $(az eventhubs namespace authorization-rule list \
                 --namespace-name $ehNamespace \ 
                 --resource-group $resourceGroupName \
