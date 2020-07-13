@@ -5,7 +5,7 @@ then
     az group create --name $resourceGroupName --location $location
 fi
 
-ehExists=$(az eventhubs eventhub show 
+ehExists=$(az eventhubs eventhub show \
     --resource-group $resourceGroupName \
     --namespace-name $ehNamespace)
 
