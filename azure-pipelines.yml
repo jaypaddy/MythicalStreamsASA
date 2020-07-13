@@ -37,12 +37,7 @@ steps:
     inlineScript: |
       echo 'hello world'
       echo 'welcome line 2'
-      rgExists=$(az group show --name $(resourceGroupName))
-      if [ -z "$rgExists" ]
-      then
-          echo "creating resourcegroup $(resourceGroupName)"
-          az group create --name $(resourceGroupName) --location $(location)
-      fi
+
 
 - #task: Bash@3
   #inputs:
