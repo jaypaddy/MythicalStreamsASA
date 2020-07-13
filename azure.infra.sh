@@ -31,7 +31,7 @@ then
     # Create egress event hub
     echo "creating eventhub $ehNamespace - $egressEventhub"
     az eventhubs eventhub create \
-                --name $egressEventhub) \
+                --name $egressEventhub \
                 --resource-group $resourceGroupName \
                 --namespace-name $ehNamespace \
                 --partition-count $partitionCount
@@ -52,7 +52,7 @@ then
                 --query [0].name -o tsv )
     
     primaryConnectionString = $(az eventhubs namespace authorization-rule keys list \
-                --name $(authorizationRuleName)
+                --name $authorizationRuleName \
                 --namespace-name $ehNamespace \ 
                 --resource-group $resourceGroupName \
                 --query primaryConnectionString -o tsv)
@@ -65,13 +65,13 @@ then
 
     #create function app (CONSUMPTION PLAN)
 
-    az functionapp create 
+    az functionapp create \
                 --name $functionApp \
                 --consumption-plan-location $location \
-                --os-type Linux 
-                --resource-group $resourceGroupName 
-                --runtime java 
-                --storage-account $funcstore  
+                --os-type Linux  \
+                --resource-group $resourceGroupName  \
+                --runtime java  \
+                --storage-account $funcstore   \
     
 else
     # check if the Event Hubs exist in the Namespace
