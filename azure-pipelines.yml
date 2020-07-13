@@ -45,7 +45,7 @@ steps:
           az group create --name $(resourceGroupName) --location $(location)
       fi
       echo "checking eventhub $(ehNamespace)"
-      ehExists=$(az eventhubs namespace show --resource-group $(resourceGroupName) --namespace-name $(ehNamespace))
+      ehExists=$(az eventhubs namespace show --resource-group $(resourceGroupName) --name $(ehNamespace))
 
       #EH Namespace and Event Hubs
       if [ -z "$ehExists" ]
