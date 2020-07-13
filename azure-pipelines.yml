@@ -100,9 +100,6 @@ steps:
     sonarQubeRunAnalysis: false
     sqMavenPluginVersionChoice: 'latest'
 
-
-
-
 # ...
 # Release Azure Function
 - task: CopyFiles@2
