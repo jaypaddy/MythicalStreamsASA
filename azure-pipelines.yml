@@ -81,7 +81,6 @@ steps:
 
           #create function app (CONSUMPTION PLAN)
           az storage account create -n $(funcstore) -l $(location) -g $(resourceGroupName) --sku Standard_LRS
-          az resource create -g $(resourceGroupName) -n $(funcappinsights) --resource-type "Microsoft.Insights/components" --properties '{\"Application_Type\":\"web\"}'
           az functionapp create --name $(functionApp) --consumption-plan-location $(location) --os-type Linux  --resource-group $(resourceGroupName)  --runtime java  --storage-account $(funcstore)   
       fi
 
@@ -118,3 +117,9 @@ steps:
   displayName: Publish Artifact
   inputs:
     PathtoPublish: $(build.artifactstagingdirectory)    
+- task: AzureFunctionApp@1
+  inputs:
+    azureSubscription: 'JAPADMAN Lab(881ac365-d417-4791-b2a9-48789acbb88d)'
+    appType: 'functionAppLinux'
+    appName: '$(functionApp)'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
