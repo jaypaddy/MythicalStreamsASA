@@ -72,11 +72,3 @@ steps:
   displayName: Publish Artifact
   inputs:
     PathtoPublish: $(build.artifactstagingdirectory)    
-
-- task: AzureFunctionApp@1
-  displayName: Azure Function App deploy
-  inputs:
-    azureSubscription: $(serviceConnectionToAzure)
-    appType: functionApp
-    appName: $(appName)
-    package: $(build.artifactstagingdirectory)
