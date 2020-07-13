@@ -29,20 +29,34 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
-- task: Bash@3
+- task: AzureCLI@2
   inputs:
-    filePath: '$(system.defaultworkingdirectory)/azure.infra.sh'
-  env:
-    resourceGroupName: 'Mythical-EH-ASA-EH-AF_RG'
-    location: 'EastUS'
-    ehNamespace: 'mythicalairlineshub'
-    ingestionEventhub: 'newmembers'
-    egressEventhub: 'newmembersagg'
-    egressEHConsumerGroup: 'functrigger'
-    partitionCount: 12
-    functionApp: 'newmembersfuncapp'
-    funcstore: 'newmembersfuncappstore'
+    azureSubscription: 'JAPADMAN Lab(881ac365-d417-4791-b2a9-48789acbb88d)'
+    scriptType: 'batch'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      echo 'hello world'
+      echo 'welcome line 2'
+      rgExists=$(az group show --name $(resourceGroupName))
+      if [ -z "$rgExists" ]
+      then
+          echo "creating resourcegroup $(resourceGroupName)"
+          az group create --name $(resourceGroupName) --location $(location)
+      fi
+
+- #task: Bash@3
+  #inputs:
+  #  filePath: '$(system.defaultworkingdirectory)/azure.infra.sh'
+  #env:
+  #  resourceGroupName: 'Mythical-EH-ASA-EH-AF_RG'
+  #  location: 'EastUS'
+  #  ehNamespace: 'mythicalairlineshub'
+  #  ingestionEventhub: 'newmembers'
+  #  egressEventhub: 'newmembersagg'
+  #  egressEHConsumerGroup: 'functrigger'
+  #  partitionCount: 12
+  #  functionApp: 'newmembersfuncapp'
+  #  funcstore: 'newmembersfuncappstore'
 
 # Build Java Function EHMessageTrigger
 - task: Maven@3
