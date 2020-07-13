@@ -52,7 +52,7 @@ steps:
       then  
           echo "creating eventhub $(ehNamespace)"
           #Create Event Hub Namespace
-          az eventhubs namespace create --name $(ehNamespace) --resource-group $(resourceGroupName)  -l $location
+          az eventhubs namespace create --name $(ehNamespace) --resource-group $(resourceGroupName)  -l $(location)
           #Create Event Hub
           # Create ingress event hub. Specify a name for the event hub. 
           echo "creating eventhub $(ehNamespace) - $(ingestionEventhub)"
