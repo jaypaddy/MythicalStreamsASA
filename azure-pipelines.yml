@@ -30,6 +30,20 @@ pool:
 
 steps:
 
+- task: Bash@3
+  inputs:
+    filePath: '$(system.defaultworkingdirectory)/azure.infra.sh'
+  env:
+    resourceGroupName: 'Mythical-EH-ASA-EH-AF_RG'
+    location: 'EastUS'
+    ehNamespace: 'mythicalairlineshub'
+    ingestionEventhub: 'newmembers'
+    egressEventhub: 'newmembersagg'
+    egressEHConsumerGroup: 'functrigger'
+    partitionCount: 12
+    functionApp: 'newmembersfuncapp'
+    funcstore: 'newmembersfuncappstore'
+
 # Build Java Function EHMessageTrigger
 - task: Maven@3
   inputs:
