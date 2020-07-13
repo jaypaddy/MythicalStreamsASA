@@ -22,8 +22,9 @@ variables:
   egressEventhub: 'newmembersagg'
   egressEHConsumerGroup: 'functrigger'
   partitionCount: 12
-  functionApp: 'newmembersfuncapp'
-  funcstore: 'newmembersfuncappstore'
+  functionApp: 'funcapp'
+  funcstore: 'funcappstore'
+  funcappinsights: 'funcappappinsights'
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -79,7 +80,8 @@ steps:
           #            --sku 'consumption' 
 
           #create function app (CONSUMPTION PLAN)
-
+          az storage account create -n $(funcstore) -l $(location) -g $(resourceGroupName) --sku Standard_LRS
+          az resource create -g $(resourceGroupName) -n $(funcappinsights) --resource-type "Microsoft.Insights/components" --properties '{\"Application_Type\":\"web\"}'
           az functionapp create --name $(functionApp) --consumption-plan-location $(location) --os-type Linux  --resource-group $(resourceGroupName)  --runtime java  --storage-account $(funcstore)   
           
       fi
