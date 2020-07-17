@@ -14,13 +14,13 @@ public class EventHubTriggerJava1 {
     @FunctionName("EventHubTriggerJava1")
     public void run(
         @EventHubTrigger(name = "message", 
-        eventHubName = "newmembersagg", 
-        connection = "orioneh_memberagg_newmembersagg_policy_EVENTHUB", 
+        eventHubName = "merged", 
+        connection = "functrigger_merged_policy", 
         consumerGroup = "functrigger", cardinality = Cardinality.ONE) 
         String message,
-        @EventHubOutput(name = "newmemberaggevent", 
-        eventHubName = "newmembersaggmetrics", 
-        connection = "orioneh_newmembersaggmetriccs") OutputBinding<Object> toEH,
+        @EventHubOutput(name = "final", 
+        eventHubName = "final", 
+        connection = "funcwriter_merged_policy") OutputBinding<Object> toEH,
         final ExecutionContext context
     ) {
         context.getLogger().info(message.toString());

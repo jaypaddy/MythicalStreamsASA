@@ -1,0 +1,119 @@
+{
+	"flight": {
+		"event": "CYCLE",
+		"version": "3",
+		"trackingID": "<TRACKINGID>",
+		"dataTime": {
+			"sourceTimeStamp": "<SRCTIMESTAMP>",
+			"fltHubTimeStamp": "<FLTHUBTIMESTAMP>"
+		},
+		"key": {
+			"airlineCode": {
+				"IATA": "AA",
+				"ICAO": "AAL"
+			},
+			"fltNum": "<FLTNUM>",
+			"fltOrgDate": "2020-04-07",
+			"depSta": "<DEP>",
+			"dupDepStaNum": "0"
+		},
+		"fosPartition": "AA",
+		"leg": {
+			"stations": {
+				"arr": "LHR",
+				"dupArrStaNum": "0"
+			},
+			"costs": {
+				"timesCancelled": 0
+			},
+			"departureArrival": {
+				"depGate": "D23",
+				"depTerminal": "D",
+				"arrTerminal": "3"
+			},
+			"equipment": {
+				"skdEquipType": "773W",
+				"assignedEquipType": "773W",
+				"skdNumericEquipType": "82",
+				"assignedNumericEquipType": "82",
+				"maintTurnCode": "AC",
+				"equipReq": "00",
+				"sasEquipCode": "77W"
+			},
+			"times": {
+				"STD": "2020-04-07T20:45:00",
+				"STA": "2020-04-08T05:55:00",
+				"LTD": "2020-04-07T20:45:00",
+				"LTA": "2020-04-08T05:55:00",
+				"skdTaxiOut": "PT14M",
+				"skdTaxiIn": "PT10M",
+				"depGMTAdjustment": "-PT5H0M",
+				"arrGMTAdjustment": "PT1H0M",
+				"OGT": "PT2H0M",
+				"legDepDOM": "2020-04-07",
+				"legArrDOM": "2020-04-08"
+			},
+			"linkage": {
+				"nextLegFltNum": "0081",
+				"nextLegOrgDate": "2020-04-08",
+				"nextLegFltDupCode": "0",
+				"priorLegFltNum": "9680",
+				"priorLegOrgDate": "2020-04-04",
+				"priorLegFltDupCode": "0"
+			},
+			"planners": {
+				"dispDesk": "FD55",
+				"loadPlanner": "LD01"
+			},
+			"status": {
+				"dep": "S",
+				"arr": "S",
+				"paxStatus": "On time"
+			},
+			"type": {
+				"callSign": "AAL50",
+				"mealCode": "DDD ",
+				"intOrDom": "I",
+				"kickOffFlt": "N",
+				"antiIceInd": "false",
+				"dblProvision": "N",
+				"EROWneeded": "Y",
+				"EROWcomplete": "N"
+			},
+			"codeShareInfo": {
+				"marketCode": "AA",
+				"operatedBy": {
+					"IATA": "AA",
+					"flightNbr": "0050"
+				},
+				"partnerFlight": [
+					{
+						"IATA": "AY",
+						"flightNbr": "5780"
+					},
+					{
+						"IATA": "BA",
+						"flightNbr": "1505"
+					},
+					{
+						"IATA": "GF",
+						"flightNbr": "6650"
+					},
+					{
+						"IATA": "IB",
+						"flightNbr": "4192"
+					},
+					{
+						"IATA": "LY",
+						"flightNbr": "8028"
+					},
+					{
+						"IATA": "MH",
+						"flightNbr": "9414"
+					}
+				]
+			}
+		},
+		"LUSInd": "N"
+	}
+}
