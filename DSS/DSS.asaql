@@ -1,7 +1,0 @@
-
-SELECT
-	*
-INTO
-	[YourOutputAlias]
-FROM
-	[YourInputAlias]

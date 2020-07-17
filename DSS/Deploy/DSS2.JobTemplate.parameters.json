@@ -1,0 +1,93 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ASAApiVersion": {
+            "value": "2017-04-01-preview"
+        },
+        "StreamAnalyticsJobName": {
+            "value": "DSS2"
+        },
+        "Location": {
+            "value": "Central US"
+        },
+        "OutputStartMode": {
+            "value": "JobStartTime"
+        },
+        "OutputStartTime": {
+            "value": "2019-01-01T00:00:00Z"
+        },
+        "DataLocale": {
+            "value": "en-US"
+        },
+        "OutputErrorPolicy": {
+            "value": "Stop"
+        },
+        "EventsLateArrivalMaxDelayInSeconds": {
+            "value": 5
+        },
+        "EventsOutOfOrderMaxDelayInSeconds": {
+            "value": 0
+        },
+        "EventsOutOfOrderPolicy": {
+            "value": "Adjust"
+        },
+        "StreamingUnits": {
+            "value": 3
+        },
+        "CompatibilityLevel": {
+            "value": "1.2"
+        },
+        "Input_etd_partitionKey": {
+            "value": "city"
+        },
+        "Input_etd_serviceBusNamespace": {
+            "value": "mythicalairlineshub"
+        },
+        "Input_etd_eventHubName": {
+            "value": "etd"
+        },
+        "Input_etd_consumerGroupName": {
+            "value": "$Default"
+        },
+        "Input_etd_sharedAccessPolicyName": {
+            "value": "dssjob_etd_policy"
+        },
+        "Input_etd_sharedAccessPolicyKey": {
+            "value": null
+        },
+        "Input_merged_serviceBusNamespace": {
+            "value": "mythicalairlineshub"
+        },
+        "Input_merged_eventHubName": {
+            "value": "merged"
+        },
+        "Input_merged_consumerGroupName": {
+            "value": "$Default"
+        },
+        "Input_merged_sharedAccessPolicyName": {
+            "value": "RootManageSharedAccessKey"
+        },
+        "Input_merged_sharedAccessPolicyKey": {
+            "value": null
+        },
+        "Input_cycle_partitionKey": {
+            "value": "city"
+        },
+        "Input_cycle_serviceBusNamespace": {
+            "value": "mythicalairlineshub"
+        },
+        "Input_cycle_eventHubName": {
+            "value": "cycle"
+        },
+        "Input_cycle_consumerGroupName": {
+            "value": "$Default"
+        },
+        "Input_cycle_sharedAccessPolicyName": {
+            "value": "dssjob_cycle_policy"
+        },
+        "Input_cycle_sharedAccessPolicyKey": {
+            "value": null
+        }
+    }
+}

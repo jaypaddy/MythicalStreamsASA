@@ -1,10 +1,22 @@
 {
-    "name": "DSS",
-    "startFile": "DSS.asaql",
+    "name": "DSS2",
+    "startFile": "DSS2.asaql",
     "configurations": [
         {
             "filePath": "JobConfig.json",
             "subType": "JobConfig"
+        },
+        {
+            "filePath": "Inputs/cycle.json",
+            "subType": "Input"
+        },
+        {
+            "filePath": "Inputs/etd.json",
+            "subType": "Input"
+        },
+        {
+            "filePath": "Inputs/merged.json",
+            "subType": "Input"
         }
     ]
 }

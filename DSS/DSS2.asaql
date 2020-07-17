@@ -1,0 +1,12 @@
+WITH   
+STEP1 AS  
+(  
+    SELECT flight.event, flight   
+    FROM cycle TIMESTAMP BY EventEnqueuedUtcTime   
+    UNION  
+    SELECT flight.event, flight     
+    FROM etd TIMESTAMP BY EventEnqueuedUtcTime
+)
+
+SELECT  *
+INTO merged FROM STEP1

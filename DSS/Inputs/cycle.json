@@ -1,0 +1,21 @@
+{
+    "Name": "cycle",
+    "Type": "Data Stream",
+    "DataSourceType": "Event Hub",
+    "EventHubProperties": {
+        "ServiceBusNamespace": "mythicalairlineshub",
+        "EventHubName": "cycle",
+        "SharedAccessPolicyName": "dssjob_cycle_policy",
+        "SharedAccessPolicyKey": null,
+        "ConsumerGroupName": "$Default"
+    },
+    "DataSourceCredentialDomain": "316f2292-0321-4b7e-821d-d7a7cde10808.StreamAnalystics",
+    "Serialization": {
+        "Type": "Json",
+        "Encoding": "UTF8",
+        "FieldDelimiter": null
+    },
+    "PartitionKey": "city",
+    "CompressionType": "None",
+    "ScriptType": "Input"
+}

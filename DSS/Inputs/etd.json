@@ -1,0 +1,21 @@
+{
+    "Name": "etd",
+    "Type": "Data Stream",
+    "DataSourceType": "Event Hub",
+    "EventHubProperties": {
+        "ServiceBusNamespace": "mythicalairlineshub",
+        "EventHubName": "etd",
+        "SharedAccessPolicyName": "dssjob_etd_policy",
+        "SharedAccessPolicyKey": null,
+        "ConsumerGroupName": "$Default"
+    },
+    "DataSourceCredentialDomain": "d6658642-8ec5-4dbc-9435-ec91c4a53f47.StreamAnalystics",
+    "Serialization": {
+        "Type": "Json",
+        "Encoding": "UTF8",
+        "FieldDelimiter": null
+    },
+    "PartitionKey": "city",
+    "CompressionType": "None",
+    "ScriptType": "Input"
+}
