@@ -5,30 +5,30 @@
 		"trackingID": "<TRACKINGID>",
 		"dataTime": {
 			"sourceTimeStamp": "<SRCTIMESTAMP>",
-			"fltHubTimeStamp": "<FLTHUBTIMESTAMP>"
+			"HubTimeStamp": "<HUBTIMESTAMP>"
 		},
 		"key": {
 			"airlineCode": {
-				"IATA": "AA",
-				"ICAO": "AAL"
+				"IATA": "XX",
+				"ICAO": "YYY"
 			},
 			"fltNum": "<FLTNUM>",
 			"fltOrgDate": "2020-04-07",
 			"depSta": "<DEP>",
 			"dupDepStaNum": "0"
 		},
-		"fosPartition": "AA",
+		"Partition": "XX",
 		"leg": {
 			"stations": {
-				"arr": "LHR",
+				"arr": "ZZZ",
 				"dupArrStaNum": "0"
 			},
 			"costs": {
 				"timesCancelled": 0
 			},
 			"departureArrival": {
-				"depGate": "D23",
-				"depTerminal": "D",
+				"depGate": "T23",
+				"depTerminal": "T",
 				"arrTerminal": "3"
 			},
 			"equipment": {
@@ -36,34 +36,34 @@
 				"assignedEquipType": "773W",
 				"skdNumericEquipType": "82",
 				"assignedNumericEquipType": "82",
-				"maintTurnCode": "AC",
+				"maintTurnCode": "TS",
 				"equipReq": "00",
 				"sasEquipCode": "77W"
 			},
 			"times": {
-				"STD": "2020-04-07T20:45:00",
-				"STA": "2020-04-08T05:55:00",
-				"LTD": "2020-04-07T20:45:00",
-				"LTA": "2020-04-08T05:55:00",
+				"STD": "2099-01-01T20:45:00",
+				"STA": "2099-01-01T05:55:00",
+				"LTD": "2099-01-01T20:45:00",
+				"LTA": "2099-01-01T05:55:00",
 				"skdTaxiOut": "PT14M",
 				"skdTaxiIn": "PT10M",
 				"depGMTAdjustment": "-PT5H0M",
 				"arrGMTAdjustment": "PT1H0M",
 				"OGT": "PT2H0M",
-				"legDepDOM": "2020-04-07",
-				"legArrDOM": "2020-04-08"
+				"legDepDOM": "2099-01-07",
+				"legArrDOM": "2099-01-01"
 			},
 			"linkage": {
 				"nextLegFltNum": "0081",
-				"nextLegOrgDate": "2020-04-08",
+				"nextLegOrgDate": "2099-01-01",
 				"nextLegFltDupCode": "0",
 				"priorLegFltNum": "9680",
-				"priorLegOrgDate": "2020-04-04",
+				"priorLegOrgDate": "2099-01-01",
 				"priorLegFltDupCode": "0"
 			},
 			"planners": {
-				"dispDesk": "FD55",
-				"loadPlanner": "LD01"
+				"dispDesk": "DD55",
+				"loadPlanner": "LP01"
 			},
 			"status": {
 				"dep": "S",
@@ -71,7 +71,7 @@
 				"paxStatus": "On time"
 			},
 			"type": {
-				"callSign": "AAL50",
+				"callSign": "XXX50",
 				"mealCode": "DDD ",
 				"intOrDom": "I",
 				"kickOffFlt": "N",
@@ -81,35 +81,15 @@
 				"EROWcomplete": "N"
 			},
 			"codeShareInfo": {
-				"marketCode": "AA",
+				"marketCode": "YY",
 				"operatedBy": {
-					"IATA": "AA",
-					"flightNbr": "0050"
+					"IATA": "XX",
+					"flightNbr": "9999"
 				},
 				"partnerFlight": [
 					{
-						"IATA": "AY",
-						"flightNbr": "5780"
-					},
-					{
-						"IATA": "BA",
-						"flightNbr": "1505"
-					},
-					{
-						"IATA": "GF",
-						"flightNbr": "6650"
-					},
-					{
-						"IATA": "IB",
-						"flightNbr": "4192"
-					},
-					{
-						"IATA": "LY",
-						"flightNbr": "8028"
-					},
-					{
-						"IATA": "MH",
-						"flightNbr": "9414"
+						"IATA": "XX",
+						"flightNbr": "9999"
 					}
 				]
 			}

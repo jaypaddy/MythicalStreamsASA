@@ -26,7 +26,7 @@ type cycle struct {
 		TrackingID string `json:"trackingID"`
 		DataTime   struct {
 			SourceTimeStamp string `json:"sourceTimeStamp"`
-			FltHubTimeStamp string `json:"fltHubTimeStamp"`
+			HubTimeStamp    string `json:"HubTimeStamp"`
 		} `json:"dataTime"`
 		Key struct {
 			AirlineCode struct {
@@ -38,8 +38,8 @@ type cycle struct {
 			DepSta       string `json:"depSta"`
 			DupDepStaNum string `json:"dupDepStaNum"`
 		} `json:"key"`
-		FosPartition string `json:"fosPartition"`
-		Leg          struct {
+		Partition string `json:"Partition"`
+		Leg       struct {
 			Stations struct {
 				Arr          string `json:"arr"`
 				DupArrStaNum string `json:"dupArrStaNum"`
@@ -280,7 +280,7 @@ func BuildMessage(jsonTemplate []byte, depCity string, eventType string) (string
 	/*
 		"trackingID": "<TRACKINGID>",
 			"sourceTimeStamp": "<SRCTIMESTAMP>",
-			"fltHubTimeStamp": "<FLTHUBTIMESTAMP>"
+			"HubTimeStamp": "<HUBTIMESTAMP>"
 			"fltNum": "<FLTNUM>",
 			"depSta": "<DEP>",
 			"arr": "<ARR>",
@@ -293,7 +293,7 @@ func BuildMessage(jsonTemplate []byte, depCity string, eventType string) (string
 	trackingID := uuid.String()
 	eventJSON = strings.ReplaceAll(eventJSON, "<TRACKINGID>", trackingID)
 	eventJSON = strings.ReplaceAll(eventJSON, "<SRCTIMESTAMP>", dtTm)
-	eventJSON = strings.ReplaceAll(eventJSON, "<FLTHUBTIMESTAMP>", dtTm)
+	eventJSON = strings.ReplaceAll(eventJSON, "<HUBTIMESTAMP>", dtTm)
 	fltNumDetail := fmt.Sprintf("AA%s", GetFltNum())
 	eventJSON = strings.ReplaceAll(eventJSON, "<FLTNUM>", fltNumDetail)
 	eventJSON = strings.ReplaceAll(eventJSON, "<DEP>", depCity)

@@ -6,6 +6,7 @@ STEP1 AS
     UNION  
     SELECT flight.event, flight     
     FROM etd TIMESTAMP BY EventEnqueuedUtcTime
+    PARTITION BY PartitionId
 )
 
 SELECT  *
