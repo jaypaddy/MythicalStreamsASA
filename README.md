@@ -1,4 +1,4 @@
-# Mythical EH - ASA - EH - AF
+# MythicalStreamsASA
 Demonstrates the following pattern to combine 2 streams into a single stream for downstream processing
 ![Image description](./Overview.png)
 
